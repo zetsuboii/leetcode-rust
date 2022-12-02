@@ -1,8 +1,37 @@
-mod ch1;
-use ch1::Ch1;
+mod ch2;
+use ch2::{ListNode, Solution};
 
 fn main() {
-    let vec1 = vec![1, 2, 3, 4, 5];
+    let num1 = Some(Box::new(ListNode { val: 9, next: None }));
 
-    println!("{:?}", Ch1::two_sum(vec1, 6));
+    let num2 = Some(Box::new(ListNode {
+        val: 1,
+        next: Some(Box::new(ListNode {
+            val: 9,
+            next: Some(Box::new(ListNode {
+                val: 9,
+                next: Some(Box::new(ListNode {
+                    val: 9,
+                    next: Some(Box::new(ListNode {
+                        val: 9,
+                        next: Some(Box::new(ListNode {
+                            val: 9,
+                            next: Some(Box::new(ListNode {
+                                val: 9,
+                                next: Some(Box::new(ListNode {
+                                    val: 9,
+                                    next: Some(Box::new(ListNode {
+                                        val: 9,
+                                        next: Some(Box::new(ListNode { val: 9, next: None })),
+                                    })),
+                                })),
+                            })),
+                        })),
+                    })),
+                })),
+            })),
+        })),
+    }));
+
+    println!("{:?}", Solution::add_two_numbers(num1, num2));
 }

@@ -1,8 +1,8 @@
-pub struct Ch1;
+pub struct Solution;
 
 use std::collections::HashMap;
 
-impl Ch1 {
+impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
       let mut indices: Vec<i32> = Vec::new();
       let mut pairs: HashMap<i32, usize> = HashMap::new();
