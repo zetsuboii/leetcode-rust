@@ -5,6 +5,19 @@ use std::collections::HashMap;
 type Matches = HashMap<(usize, usize), bool>;
 
 impl Solution {
+    /// This function takes a memoization of (i, j) -> bool,
+    /// string, pattern, i and j
+    /// Logic goes like this,
+    /// - If we know string[i:] matches pattern[j:] return that
+    /// - Otherwise:
+    ///     - If pattern is over, answer is if string is also over
+    ///     - Else, first_match is string not being over and pattern's last
+    ///     index matching the string's last index
+    ///         - If pattern continues with * answer is if rest of the pattern
+    ///         matches string or first_match then rest of the string matching
+    ///         pattern
+    ///         - Else, first_match and rest of the string matching rest of the
+    ///         pattern
     fn dp(matches: &mut Matches, s: &String, p: &String, i: usize, j: usize) -> bool {
         match matches.get(&(i, j)) {
             Some(&m) => return m,
