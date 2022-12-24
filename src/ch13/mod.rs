@@ -50,6 +50,30 @@ impl Solution {
 
         sum
     }
+
+    pub fn roman_to_int_alt(s: String) -> i32 {
+        let mut sum = 0;
+        let mut prev;
+        let mut curr = '\0';
+
+        for c in s.chars() {
+            prev = curr;
+            curr = c;
+
+            match curr {
+                'I' => sum += 1,
+                'V' => sum += if prev == 'I' { 3 } else { 5 },
+                'X' => sum += if prev == 'I' { 8 } else { 10 },
+                'L' => sum += if prev == 'X' { 30 } else { 50 },
+                'C' => sum += if prev == 'X' { 80 } else { 100 },
+                'D' => sum += if prev == 'C' { 300 } else { 500 },
+                'M' => sum += if prev == 'C' { 800 } else { 1000 },
+                _ => println!("Skipping invalid roman"),
+            }
+        }
+
+        sum
+    }
 }
 
 #[cfg(test)]
@@ -59,5 +83,10 @@ mod tests {
     #[test]
     fn test_roman_to_int() {
         assert_eq!(Solution::roman_to_int(String::from("MCMXCIV")), 1994);
+    }
+
+    #[test]
+    fn test_roman_to_int_alt() {
+        assert_eq!(Solution::roman_to_int_alt(String::from("MCMXCIV")), 1994);
     }
 }
